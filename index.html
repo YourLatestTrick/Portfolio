@@ -152,7 +152,25 @@
         </div> <!--interface-->
     </footer>
 
-    <audio src="assets/musica.m4a" autoplay loop></audio>
+    <audio id="background-audio" src="assets/musica.mp3" autoplay loop muted></audio>
+
+    <script>
+        let audioPlayed = false;
+
+        function playAudio() {
+            const audio = document.getElementById('background-audio');
+            if (!audioPlayed) {
+                audio.muted = false;
+                audio.play().then(() => {
+                    audioPlayed = true;
+                }).catch(err => {
+                    console.log("Erro ao tentar tocar o áudio:", err);
+                });
+            }
+        }
+
+        window.addEventListener('mousemove', playAudio);
+    </script>
 
 </body>
 
